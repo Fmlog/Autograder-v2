@@ -1,0 +1,16 @@
+{
+    "include": [
+        "autograder/"
+    ],
+    "exclude": [
+        "autograder/plagiarism_detection/lexers",
+        "autograder/testcase_types/**/templates",
+        "autograder/testcase_types/**/helpers",
+        "examples/**",
+    ],
+    "strict": [
+        "autograder/testcases/abstract_base_class.py"
+    ],
+    "reportImportCycles": "information",
+    "reportUnusedFunction": "warning"
+}
