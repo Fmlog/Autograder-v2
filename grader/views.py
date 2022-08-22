@@ -117,6 +117,7 @@ class QuestionView(APIView):
         from autograderstable.autograder import guide
 
         current_dir = f'media/upload/{quest.slug}'
+        os.mkdir(f"{current_dir}/")
         os.mkdir(f"{current_dir}/results")
         guide.main(AutograderPaths(current_dir))
 

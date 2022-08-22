@@ -116,6 +116,8 @@ class CanvasHelper:
         return subset
 
     def getSubmissions(self):
+        # Downloading all the submissions for the selected assignment
+    #         and storing them in a directory.
         submissions = []
         directory_name = self.getSubmissionsDirectory()
         submissions_downloaded = False

@@ -353,7 +353,7 @@ class Runner:
         import json
         mydb = mysql.connector.connect(
             host="localhost",
-            user="root",
+            user="django",
             password="",
             database="autograder"
         )
