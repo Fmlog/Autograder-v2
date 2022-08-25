@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+from urllib import response
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -11,21 +13,28 @@ from rest_framework.exceptions import AuthenticationFailed
 from .models import User
 import jwt, datetime
 
+from rest_framework.decorators import api_view, renderer_classes
+from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
+
 # Create your views here.
+@api_view(('GET',))
+def test(request):
+    if request.method == "GET":
+        return Response({"status": "success", "data": "its alive", "message" : "user created"}, status=status.HTTP_200_OK)
+
 
 class RegisterLecturerViews(APIView):
-
+    ''' Create new lecturer user '''
     def post(self, request):
         serializer = UserSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.validated_data['is_lecturer'] = True
         serializer.save()
-        # return Response(serializer.data)
         return Response({"status": "success", "data": serializer.data, "message" : "user created"}, status=status.HTTP_200_OK)
 
 
 class RegisterStudentViews(APIView):
-
+    ''' Create new student user '''
     def post(self, request):
         serializer = UserSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -36,7 +45,7 @@ class RegisterStudentViews(APIView):
 
 
 class RegisterAdminViews(APIView):
-
+    ''' Create new admin user '''
     def post(self, request):
         serializer = UserSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -47,14 +56,12 @@ class RegisterAdminViews(APIView):
 
 
 class LoginViews(APIView):
-
+    ''' Authentication '''
     def post(self, request):
-        email = request.data.get('email')
+        email = request.data.get('login_id')
         password = request.data.get('password')
 
-        user = User.objects.filter(email=email).first()
-        # user = authenticate(request, email=email, password=password
-        # login(request, user)
+        user = User.objects.filter(login_id=email).first()
 
         if user is None:
             raise AuthenticationFailed('Invalid credentials')
@@ -87,7 +94,8 @@ class LoginViews(APIView):
 class UserViews(APIView):
 
     def get(self, request):
-
+        ''' Get the token from the cookie
+            and return current user's details '''
         token = request.COOKIES.get('token')
         if token is None:
             raise AuthenticationFailed('Invalid credentials')
@@ -97,16 +105,7 @@ class UserViews(APIView):
         user = User.objects.filter(id=payload['id']).first()
         if not user:
             return Response({"status": "error", "data": [], "message" : "User not found"}, status=status.HTTP_404_NOT_FOUND)
-        #
-        #
 
-        #check if user is logged in
-        # if not request.user.is_authenticated:
-        #     return Response({
-        #         "status": "error",
-        #         "message": "no user found"
-        #     }, status=status.HTTP_401_UNAUTHORIZED)
-        # user = request.user
         serializer = UserSerializers(user)
 
         return Response({
@@ -116,7 +115,8 @@ class UserViews(APIView):
         }, status=status.HTTP_200_OK)
 
     def delete(self, request):
-
+        ''' Get the token from the cookie
+            and return current user's details '''
         token = request.COOKIES.get('token')
         if token is None:
             raise AuthenticationFailed('Invalid credentials')
@@ -128,6 +128,7 @@ class UserViews(APIView):
         return Response({"status": "success", "data": [], "message": "user deleted"})
 
 class LogoutViews(APIView):
+    ''' logout by deleting token from the cookie '''
 
     def get(self, request):
         # logout(request)

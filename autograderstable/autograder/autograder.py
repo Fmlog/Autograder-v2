@@ -98,6 +98,7 @@ class Grader:
             self._temp_dir.cleanup()
 
     def _prepare_directory_structure(self) -> None:
+        ''' Prepare directory structure for grading'''
         self._temp_dir = TemporaryDirectory()
         self.temp_dir = Path(self._temp_dir.name)
         self._check_required_directories_exist()
@@ -141,6 +142,8 @@ class Grader:
         return submissions
 
     def _gather_io(self) -> Dict[str, TestCaseIO]:
+        '''Get inputs and outputs for testcases from respective
+            dirs'''
         outputs = get_file_names(self.paths.output_dir)
         inputs = get_file_names(self.paths.input_dir)
         io: Set[str] = set(outputs).union(inputs)
