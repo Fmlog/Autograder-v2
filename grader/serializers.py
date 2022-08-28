@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from home.models import User
-from.models import Assignment, Course, File
+from.models import Assignment, Course, Submission
 
 class CourseSerializer(serializers.ModelSerializer):
 
@@ -24,16 +24,16 @@ class TestCaseSerializer(serializers.ModelSerializer):
     assignment_id = serializers.PrimaryKeyRelatedField(source='assignment', queryset=Assignment.objects.all())
 
     class Meta:
-        model = File
+        model = Submission
         fields = ('id', 'assignment_id', 'file')
 
-class FileSerializer(serializers.ModelSerializer):
+class SubmissionSerializer(serializers.ModelSerializer):
 
     assignment_id = serializers.PrimaryKeyRelatedField(source='assignment', queryset=Assignment.objects.all())
     user_id = serializers.PrimaryKeyRelatedField(source='user', queryset=User.objects.all())
 
     class Meta:
-        model = File
+        model = Submission
         fields = ('id', 'assignment_id', 'user_id', 'file', 'result')
         extra_kwargs = {
             'result': {'read_only': True},

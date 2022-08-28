@@ -11,13 +11,13 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 import jwt, datetime
-from .models import Course, File, Assignment
+from .models import Course, Submission, Assignment
 from django.utils.decorators import method_decorator
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import AssignmentSerializer, CourseSerializer, FileSerializer, TestCaseSerializer
+from .serializers import AssignmentSerializer, CourseSerializer, SubmissionSerializer, TestCaseSerializer
 from home.models import User
-from grader.models import TestCase, Assignment, File
+from grader.models import TestCase, Assignment, Submission
 import random
 import string
 import os
@@ -51,12 +51,12 @@ class CourseView(APIView):
 
     def get(self, request):
         stat, user = validate_user(request)
-        if not stat:
+        '''if not stat:
             return Response({
                 "status": "error",
                 "message": "no user found"
             }, status=status.HTTP_401_UNAUTHORIZED)
-
+'''
         cours = Course.objects.all()
         course = CourseSerializer(cours, many=True)
         return Response({
@@ -288,16 +288,16 @@ class SubmissionView(APIView):
 
         f = request.data['file']
         assignment_id = request.data['assignment_id']
-        sub = File.objects.create(file=f, user_id=user.id, assignment_id=assignment_id)
-        file_sub = FileSerializer(sub).data
+        sub = Submission.objects.create(file=f, user_id=user.id, assignment_id=assignment_id)
+        file_sub = SubmissionSerializer(sub).data
         id = file_sub['id']
        
-        file = File.objects.get(id=id)
+        file = Submission.objects.get(id=id)
         # run the autograder
         os.system(f"python ./tester.py 'media/upload/{file.assignment.slug}' '{file.id}'")
 
-        file = File.objects.get(id=id)
-        file_serializer = FileSerializer(file)
+        file = Submission.objects.get(id=id)
+        file_serializer = SubmissionSerializer(file)
 
         if os.path.exists(f"media/{file.file}"):
             os.remove(f"media/{file.file}")
@@ -316,7 +316,7 @@ class SubmissionView(APIView):
                 "message": "no user found"
             }, status=status.HTTP_401_UNAUTHORIZED)
 
-        question = File.objects.get(user_id=user)
+        question = Submission.objects.get(user_id=user)
         if not question:
             return Response({
                 "status": "success",
@@ -324,8 +324,8 @@ class SubmissionView(APIView):
             }, status=status.HTTP_404_NOT_FOUND)
 
 
-        files = File.objects.filter(assignment_id=question)
-        file_serializer = FileSerializer(files, many=True)
+        files = Submission.objects.filter(assignment_id=question)
+        file_serializer = SubmissionSerializer(files, many=True)
 
         return Response({
             "status": "success",
@@ -348,7 +348,7 @@ class SubmissionView(APIView):
                 "message": "Unauthorized"
             }, status=status.HTTP_401_UNAUTHORIZED)
 
-        question = File.objects.get(id=id)
+        question = Submission.objects.get(id=id)
         if not question:
             return Response({
                 "status": "success",
@@ -356,8 +356,8 @@ class SubmissionView(APIView):
             }, status=status.HTTP_404_NOT_FOUND)
 
 
-        files = File.objects.filter(assignment_id=question)
-        file_serializer = FileSerializer(files, many=True)
+        files = Submission.objects.filter(assignment_id=question)
+        file_serializer = SubmissionSerializer(files, many=True)
 
         return Response({
             "status": "success",

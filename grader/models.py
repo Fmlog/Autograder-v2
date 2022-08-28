@@ -35,7 +35,7 @@ class TestCase(SoftDeleteModel):
     file = models.FileField(upload_to=get_upload_to)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 
-class File(models.Model):
+class Submission(models.Model):
     id = models.CharField(primary_key=True, default=uuid.uuid4, editable=False, unique=True, max_length=100)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

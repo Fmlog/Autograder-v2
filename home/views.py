@@ -11,52 +11,73 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import AuthenticationFailed
 from .models import User
-import jwt, datetime
+import jwt
+import datetime
 
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 
 # Create your views here.
+
+
 @api_view(('GET',))
 def test(request):
     if request.method == "GET":
-        return Response({"status": "success", "data": "its alive", "message" : "user created"}, status=status.HTTP_200_OK)
+        return Response({
+            "status": "success",
+            "title": "its alive",
+            "message": "user created"
+        },
+        {
+            "status": "success",
+            "title": "its alive",
+            "message": "user created"
+        },
+         status=status.HTTP_200_OK)
 
 
 class RegisterLecturerViews(APIView):
     ''' Create new lecturer user '''
+
     def post(self, request):
         serializer = UserSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.validated_data['is_lecturer'] = True
         serializer.save()
-        return Response({"status": "success", "data": serializer.data, "message" : "user created"}, status=status.HTTP_200_OK)
+        return Response({
+            "status": "success",
+            "data": serializer.data,
+            "message": "user created"
+        }, status=status.HTTP_200_OK)
 
 
 class RegisterStudentViews(APIView):
     ''' Create new student user '''
+
     def post(self, request):
         serializer = UserSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.validated_data['is_student'] = True
         serializer.save()
 
-        return Response({"status": "success", "data": serializer.data, "message" : "user created"}, status=status.HTTP_200_OK)
+        return Response({"status": "success", "data": serializer.data, "message": "user created"}, status=status.HTTP_200_OK)
 
 
 class RegisterAdminViews(APIView):
     ''' Create new admin user '''
+
     def post(self, request):
         serializer = UserSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.validated_data['is_superuser'] = True
         serializer.validated_data['is_staff'] = True
         serializer.save()
-        return Response({"status": "success", "data": serializer.data, "message" : "user created"}, status=status.HTTP_200_OK)
+        return Response({"status": "success", "data": serializer.data, "message": "user created"}, status=status.HTTP_200_OK)
 
 
 class LoginViews(APIView):
     ''' Authentication '''
+
     def post(self, request):
         email = request.data.get('login_id')
         password = request.data.get('password')
@@ -82,15 +103,17 @@ class LoginViews(APIView):
 
         response.set_cookie('token', token, httponly=True)
         response.data = {
-            "status" : "success",
-            "data" : serializer.data,
-            "message" : "Login Successful",
-            "token" : token
+            "status": "success",
+            "data": serializer.data,
+            "message": "Login Successful",
+            "token": token
         }
 
         return response
 
 # @login_required()
+
+
 class UserViews(APIView):
 
     def get(self, request):
@@ -104,7 +127,7 @@ class UserViews(APIView):
 
         user = User.objects.filter(id=payload['id']).first()
         if not user:
-            return Response({"status": "error", "data": [], "message" : "User not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"status": "error", "data": [], "message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = UserSerializers(user)
 
@@ -127,6 +150,7 @@ class UserViews(APIView):
         item.soft_delete()
         return Response({"status": "success", "data": [], "message": "user deleted"})
 
+
 class LogoutViews(APIView):
     ''' logout by deleting token from the cookie '''
 
@@ -137,6 +161,6 @@ class LogoutViews(APIView):
         response.delete_cookie('token')
         response.data = {
             "status": "success",
-            "message" : "Logout Successful"
+            "message": "Logout Successful"
         }
         return response
