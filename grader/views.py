@@ -10,7 +10,9 @@ from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
-import jwt, datetime
+from rest_framework.decorators import api_view
+import jwt
+import datetime
 from .models import Course, Submission, Assignment
 from django.utils.decorators import method_decorator
 from django.core import serializers
@@ -26,12 +28,15 @@ import os
 def slug_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
+
 def handle_uploaded_file(f):
     with open(f.name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
 # validating user authentication
+
+
 def validate_user(request):
     token = request.COOKIES.get('token')
     if token is None:
@@ -46,33 +51,117 @@ def validate_user(request):
     return True, user
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-class CourseView(APIView):
+@api_view(['GET'])
+def getCourseAssignment(request, id):
+    user = request.user
+    user = User.objects.filter(id=user.id).first()
+    if not user:
+        return Response({"status": "error", "data": [], "message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    course = Course.objects.filter(id=id).first()
+    quest = Assignment.objects.filter(course=course)
+    question = AssignmentSerializer(quest, many=True)
+
+    return Response({
+        "status": "success",
+        "data": question.data,
+        "message": f"Assignments for {course.name}"
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def getAllSubmissions(request, id):
+    user = request.user
+    user = User.objects.filter(id=user.id).first()
+    if not user:
+        return Response({"status": "error", "data": [], "message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    course = Course.objects.filter(id=id).first()
+    quest = Assignment.objects.filter(course=course)
+    question = AssignmentSerializer(quest, many=True)
+
+    return Response({
+        "status": "success",
+        "data": question.data,
+        "message": "Assignment query succesful"
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def getLastSubmission(request, id):
+    user = request.user
+    user = User.objects.filter(id=user.id).first()
+    if not user:
+        return Response({"status": "error", "data": [], "message": "User not found"},
+                        status=status.HTTP_404_NOT_FOUND)
+
+    if not user.is_lecturer:
+        return Response({
+            "status": "error",
+            "message": "only lecturers can create a course"
+        }, status=status.HTTP_401_UNAUTHORIZED)
+
+    course = Course.objects.filter(id=id).first()
+    quest = Assignment.objects.filter(course=course).order_by('-id').first()
+    question = AssignmentSerializer(quest, many=True)
+
+    return Response({
+        "status": "success",
+        "data": question.data,
+        "message": "last submission"
+    }, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def getUserSubmission(request, id, user_id):
+    user = request.user
+    user = User.objects.filter(id=user.id).first()
+    if not user:
+        return Response({"status": "error", "data": [], "message": "User not found"},
+                        status=status.HTTP_404_NOT_FOUND)
+
+    if not user.is_lecturer:
+        return Response({
+            "status": "error",
+            "message": "only lecturers can create a course"
+        }, status=status.HTTP_401_UNAUTHORIZED)
+
+    submitted_user = User.objects.filter(id=user_id).first()
+
+    course = Course.objects.filter(id=id).first()
+    quest = Assignment.objects.filter(course=course, user=submitted_user)
+    question = AssignmentSerializer(quest, many=True)
+
+    return Response({
+        "status": "success",
+        "data": question.data,
+        "message": "last submission"
+    }, status=status.HTTP_200_OK)
+
+# @method_decorator(csrf_exempt, name='dispatch')
+
+
+class CourseList(APIView):
 
     def get(self, request):
-        stat, user = validate_user(request)
-        '''if not stat:
-            return Response({
-                "status": "error",
-                "message": "no user found"
-            }, status=status.HTTP_401_UNAUTHORIZED)
-'''
+        print(request.user)
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
         cours = Course.objects.all()
         course = CourseSerializer(cours, many=True)
-        return Response({
-            "status": "success",
-            "data": course.data,
-            "message": "Assignment query succesful"
-        }, status=status.HTTP_200_OK)
-
+        return Response(
+            course.data,
+            status=status.HTTP_200_OK)
 
     def post(self, request):
-        stat, user = validate_user(request)
-        if not stat:
-            return Response({
-                    "status": "error",
-                    "message": "no user found"
-            }, status=status.HTTP_401_UNAUTHORIZED)
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
 
         if not user.is_lecturer:
             return Response({
@@ -87,16 +176,33 @@ class CourseView(APIView):
         return Response({
             "status": "success",
             "data": course.data,
-            "message": "Question added"
+            "message": "Course added"
         }, status=status.HTTP_200_OK)
 
+
+class CourseView(APIView):
+
+    def get(self, request, id):
+        print(request.user)
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
+
+        ass = Assignment.objects.filter(course_id=id)
+        course = AssignmentSerializer(ass, many=True)
+        print(course)
+        return Response(
+            course.data,
+         status=status.HTTP_200_OK)
+
     def delete(self, request, id):
-        stat, user = validate_user(request)
-        if not stat:
-            return Response({
-                "status": "error",
-                "message": "no user found"
-            }, status=status.HTTP_401_UNAUTHORIZED)
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
 
         if not user.is_lecturer:
             return Response({
@@ -113,43 +219,24 @@ class CourseView(APIView):
         }, status=status.HTTP_200_OK)
 
 
-
-@method_decorator(csrf_exempt, name='dispatch')
-class AssignmentView(APIView):
-
-    def get(self, request):
-        stat, user = validate_user(request)
-        course = request.data['course_id']
-        if not stat:
-            return Response({
-                "status": "error",
-                "message": "no user found"
-            }, status=status.HTTP_401_UNAUTHORIZED)
-
-        quest = Assignment.objects.filter(course_id=course)
-        question = AssignmentSerializer(quest, many=True)
-        return Response({
-            "status": "success",
-            "data": question.data,
-            "message": "Assignment query succesful"
-        }, status=status.HTTP_200_OK)
-
+# @method_decorator(csrf_exempt, name='dispatch')
+class AssignmentList(APIView):
 
     def post(self, request):
-        stat, user = validate_user(request)
-        course = request.data['course_id']
-        if not stat:
-            return Response({
-                    "status": "error",
-                    "message": "no user found"
-            }, status=status.HTTP_401_UNAUTHORIZED)
+        user = request.user
+        print(request.user)
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
 
         if not user.is_lecturer:
             return Response({
                 "status": "error",
-                "message": "only lecturers can create an assignment"
+                "message": "only lecturers can create a course"
             }, status=status.HTTP_401_UNAUTHORIZED)
 
+        course = request.data['course_id']
         question = AssignmentSerializer(data=request.data)
         question.is_valid(raise_exception=True)
 
@@ -176,13 +263,67 @@ class AssignmentView(APIView):
             "message": "Assignment added"
         }, status=status.HTTP_200_OK)
 
-    def delete(self, request, id):
-        stat, user = validate_user(request)
-        if not stat:
+    def get(self, request):
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
+
+        #course = request.data['course_id']
+        quest = Assignment.objects.all()
+        question = AssignmentSerializer(quest, many=True)
+        return Response(
+            question.data,
+            status=status.HTTP_200_OK)
+
+
+class AssignmentView(APIView):
+    def get(self, request, id):
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
+
+        quest = Assignment.objects.filter(id=id).first()
+        question = AssignmentSerializer(quest)
+
+        return Response(
+            question.data,
+            status=status.HTTP_200_OK)
+
+    def put(self, request, id):
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
+
+        if not user.is_lecturer:
             return Response({
                 "status": "error",
-                "message": "no user found"
+                "message": "only lecturers can create an assignment"
             }, status=status.HTTP_401_UNAUTHORIZED)
+
+        data = request.data
+        quest = Assignment.objects.filter(id=id).first()
+        question = AssignmentSerializer(quest, data=data, partial=True)
+        question.is_valid(raise_exception=True)
+        question.save()
+
+        return Response({
+            "status": "success",
+            "data": question.data,
+            "message": "Assignment query succesful"
+        }, status=status.HTTP_200_OK)
+
+    def delete(self, request, id):
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
 
         if not user.is_lecturer:
             return Response({
@@ -201,6 +342,7 @@ class AssignmentView(APIView):
             "message": "Assignment deleted"
         }, status=status.HTTP_200_OK)
 
+
 class TestCaseView(APIView):
 
     def post(self, request):
@@ -210,7 +352,7 @@ class TestCaseView(APIView):
         for f in request.FILES.getlist('file'):
             test = TestCase.objects.create(file=f, assignment_id=assignment_id)
             testcases[num] = TestCaseSerializer(test).data
-            num +=1
+            num += 1
 
         return Response({
             "status": "success",
@@ -219,12 +361,11 @@ class TestCaseView(APIView):
         }, status=status.HTTP_200_OK)
 
     def get(self, request, id):
-        stat, user = validate_user(request)
-        if not stat:
-            return Response({
-                "status": "error",
-                "message": "no user found"
-            }, status=status.HTTP_401_UNAUTHORIZED)
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
 
         if not user.is_lecturer:
             return Response({
@@ -252,12 +393,11 @@ class TestCaseView(APIView):
         pass
 
     def delete(self, request, id):
-        stat, user = validate_user(request)
-        if not stat:
-            return Response({
-                "status": "error",
-                "message": "no user found"
-            }, status=status.HTTP_401_UNAUTHORIZED)
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
 
         if not user.is_lecturer:
             return Response({
@@ -275,26 +415,28 @@ class TestCaseView(APIView):
             "message": "Test case deleted"
         }, status=status.HTTP_200_OK)
 
+
 class SubmissionView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request, *args, **kwargs):
-        stat, user = validate_user(request)
-        if not stat:
-            return Response({
-                "status": "error",
-                "message": "no user found"
-            }, status=status.HTTP_401_UNAUTHORIZED)
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
 
         f = request.data['file']
         assignment_id = request.data['assignment_id']
-        sub = Submission.objects.create(file=f, user_id=user.id, assignment_id=assignment_id)
+        sub = Submission.objects.create(
+            file=f, user_id=user.id, assignment_id=assignment_id)
         file_sub = SubmissionSerializer(sub).data
         id = file_sub['id']
-       
+
         file = Submission.objects.get(id=id)
         # run the autograder
-        os.system(f"python ./tester.py 'media/upload/{file.assignment.slug}' '{file.id}'")
+        os.system(
+            f"python ./tester.py 'media/upload/{file.assignment.slug}' '{file.id}'")
 
         file = Submission.objects.get(id=id)
         file_serializer = SubmissionSerializer(file)
@@ -309,12 +451,11 @@ class SubmissionView(APIView):
 
     def get(self, request):
 
-        stat, user = validate_user(request)
-        if not stat:
-            return Response({
-                "status": "error",
-                "message": "no user found"
-            }, status=status.HTTP_401_UNAUTHORIZED)
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
 
         question = Submission.objects.get(user_id=user)
         if not question:
@@ -322,7 +463,6 @@ class SubmissionView(APIView):
                 "status": "success",
                 "message": "No question with id"
             }, status=status.HTTP_404_NOT_FOUND)
-
 
         files = Submission.objects.filter(assignment_id=question)
         file_serializer = SubmissionSerializer(files, many=True)
@@ -335,12 +475,11 @@ class SubmissionView(APIView):
 
     def get(self, request, id):
 
-        stat, user = validate_user(request)
-        if not stat:
-            return Response({
-                "status": "error",
-                "message": "no user found"
-            }, status=status.HTTP_401_UNAUTHORIZED)
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
 
         if not user.is_lecturer:
             return Response({
@@ -355,7 +494,6 @@ class SubmissionView(APIView):
                 "message": "No submission with id"
             }, status=status.HTTP_404_NOT_FOUND)
 
-
         files = Submission.objects.filter(assignment_id=question)
         file_serializer = SubmissionSerializer(files, many=True)
 
@@ -364,4 +502,3 @@ class SubmissionView(APIView):
             "data": file_serializer.data,
             "message": "Submission query completed"
         }, status=status.HTTP_200_OK)
-

@@ -16,6 +16,7 @@ import datetime
 
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
+from home.tokens import create_jwt_pair_for_user
 
 # Create your views here.
 
@@ -82,34 +83,18 @@ class LoginViews(APIView):
         email = request.data.get('login_id')
         password = request.data.get('password')
 
-        user = User.objects.filter(login_id=email).first()
+        user = authenticate(login_id=email, password=password)
 
-        if user is None:
-            raise AuthenticationFailed('Invalid credentials')
-
-        if not user.check_password(password):
-            raise AuthenticationFailed('Password is incorrect')
-
-        # 'iat' means the date it was created
-        payload = {
-            'id': user.id,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30),
-            'iat': datetime.datetime.utcnow()
-        }
+        token = create_jwt_pair_for_user(user)
 
         serializer = UserSerializers(user)
-        token = jwt.encode(payload, 'SECRET_KEY', algorithm='HS256')
-        response = Response()
 
-        response.set_cookie('token', token, httponly=True)
-        response.data = {
+        return Response({
             "status": "success",
             "data": serializer.data,
-            "message": "Login Successful",
-            "token": token
-        }
-
-        return response
+            "token": token,
+            "message": "Login Successful"
+        }, status=status.HTTP_200_OK)
 
 # @login_required()
 
@@ -119,13 +104,9 @@ class UserViews(APIView):
     def get(self, request):
         ''' Get the token from the cookie
             and return current user's details '''
-        token = request.COOKIES.get('token')
-        if token is None:
-            raise AuthenticationFailed('Invalid credentials')
 
-        payload = jwt.decode(token, 'SECRET_KEY', algorithms='HS256')
-
-        user = User.objects.filter(id=payload['id']).first()
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
         if not user:
             return Response({"status": "error", "data": [], "message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
@@ -140,14 +121,13 @@ class UserViews(APIView):
     def delete(self, request):
         ''' Get the token from the cookie
             and return current user's details '''
-        token = request.COOKIES.get('token')
-        if token is None:
-            raise AuthenticationFailed('Invalid credentials')
+        user = request.user
+        user = User.objects.filter(id=user.id).first()
+        if not user:
+            return Response({"status": "error", "data": [], "message": "User not found"},
+                            status=status.HTTP_404_NOT_FOUND)
 
-        payload = jwt.decode(token, 'SECRET_KEY', algorithms='HS256')
-
-        item = get_object_or_404(User, id=payload['id'])
-        item.soft_delete()
+        user.soft_delete()
         return Response({"status": "success", "data": [], "message": "user deleted"})
 
 
