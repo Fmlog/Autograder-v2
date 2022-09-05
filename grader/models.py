@@ -25,7 +25,7 @@ class Assignment(SoftDeleteModel):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, null=False)
     slug = models.CharField(max_length=255)
-    description = models.CharField(max_length=255, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -41,6 +41,7 @@ class Submission(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     file = models.FileField(blank=False, null=False, upload_to=get_file_upload_to)
     result = models.JSONField(blank=False, null=False, default='{}')
+    grade = models.CharField(max_length=20, default="0")
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def filename(self):

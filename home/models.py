@@ -1,18 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, UserManager
-from random import randint
 from .softDelete import SoftDeleteModel
-# Create your models here.
-
 
 class User(SoftDeleteModel, AbstractUser):
+    ADMIN = 1
+    TEACHER = 2
+    STUDENT = 3
+
+    ROLE_CHOICES = (
+        (ADMIN, 'admin'),
+        (TEACHER, 'teacher'),
+        (STUDENT, 'student'),
+    )
+
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     login_id = models.EmailField(unique=True)
     password = models.CharField(max_length=255)
-    is_lecturer = models.BooleanField(default=False)
-    is_student = models.BooleanField(default=False)
-    is_admin = models.BooleanField(default=False)
+    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)
     username = None
 
     USERNAME_FIELD = 'login_id'

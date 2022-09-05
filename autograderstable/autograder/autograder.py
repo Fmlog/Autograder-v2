@@ -18,6 +18,10 @@ from .testcase_utils.testcase_io import TestCaseIO
 from .testcase_utils.testcase_picker import TestCasePicker
 from .util import AutograderError, get_file_names, hide_path_to_directory, import_from_path
 
+import mysql.connector
+import json
+
+
 EMPTY_TESTCASE_IO = TestCaseIO.get_empty_io()
 
 
@@ -341,8 +345,11 @@ class Runner:
                 self.grader.config.testcase_compilation_args[test.name],
                 self.grader.config.testcase_runtime_args[test.name],
             )
-            diction[f"testcase {num}"] = result.grade
-            num+=1
+            # print(result)
+            diction[f"testcase {num}"] = {
+                "result": result.grade
+            }
+            num+= 1
             message = hide_path_to_directory(result.message, submission.temp_dir)
             submission.add_grade(
                 test.name,
@@ -351,17 +358,23 @@ class Runner:
                 message,
                 result.extra_output_fields,
             )
+        grade = 0
+        for key, value in diction.items():
+            if value['result'] != 100:
+                grade = "0"
+                break
+            else:
+                grade = "100"
 
-        import mysql.connector
-        import json
+
         mydb = mysql.connector.connect(
             host="localhost",
-            user="django",
+            user="root",
             password="",
             database="autograder"
         )
         mycursor = mydb.cursor()
-        sql = """UPDATE grader_submission SET result = '""" + json.dumps(diction) + """' WHERE id = '""" + self.file_id + """' """
+        sql = """UPDATE grader_submission SET result = '""" + json.dumps(diction) + """', grade = """ + grade +""" WHERE id = '""" + self.file_id + """' """
         mycursor.execute(sql)
         mydb.commit()
         submission.register_final_grade(self.grader.config.total_score_to_100_ratio)
