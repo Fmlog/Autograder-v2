@@ -195,7 +195,7 @@ class CourseView(APIView):
         print(course)
         return Response(
             course.data,
-         status=status.HTTP_200_OK)
+            status=status.HTTP_200_OK)
 
     def delete(self, request, id):
         user = request.user
@@ -227,8 +227,11 @@ class AssignmentList(APIView):
         print(request.user)
         user = User.objects.filter(id=user.id).first()
         if not user:
-            return Response({"status": "error", "data": [], "message": "User not found"},
-                            status=status.HTTP_404_NOT_FOUND)
+            return Response({
+                "status": "error",
+                "data": [],
+                "message": "User not found"
+            }, status=status.HTTP_404_NOT_FOUND)
 
         if not user.is_lecturer:
             return Response({
@@ -237,17 +240,14 @@ class AssignmentList(APIView):
             }, status=status.HTTP_401_UNAUTHORIZED)
 
         course = request.data['course_id']
-        question = AssignmentSerializer(data=request.data)
-        question.is_valid(raise_exception=True)
+        assignment = AssignmentSerializer(data=request.data)
+        assignment.is_valid(raise_exception=True)
 
         slug = slug_generator()
-        question.validated_data['course_id'] = course
-        question.validated_data['slug'] = slug
-        question.save()
+        assignment.validated_data['course_id'] = course
+        assignment.validated_data['slug'] = slug
+        assignment.save()
         quest = Assignment.objects.get(slug=slug)
-
-        for f in request.FILES.getlist('file'):
-            TestCase.objects.create(file=f, question=quest)
 
         from autograderstable.autograder.autograder import AutograderPaths, Grader
         from autograderstable.autograder import guide
@@ -259,7 +259,7 @@ class AssignmentList(APIView):
 
         return Response({
             "status": "success",
-            "data": question.data,
+            "data": assignment.data,
             "message": "Assignment added"
         }, status=status.HTTP_200_OK)
 
@@ -423,8 +423,11 @@ class SubmissionView(APIView):
         user = request.user
         user = User.objects.filter(id=user.id).first()
         if not user:
-            return Response({"status": "error", "data": [], "message": "User not found"},
-                            status=status.HTTP_404_NOT_FOUND)
+            return Response({
+                "status": "error",
+                "data": [],
+                "message": "User not found"
+            }, status=status.HTTP_404_NOT_FOUND)
 
         f = request.data['file']
         assignment_id = request.data['assignment_id']
@@ -436,7 +439,7 @@ class SubmissionView(APIView):
         file = Submission.objects.get(id=id)
         # run the autograder
         os.system(
-            f"python ./tester.py 'media/upload/{file.assignment.slug}' '{file.id}'")
+            f"python ./runner.py 'media/upload/{file.assignment.slug}' '{file.id}'")
 
         file = Submission.objects.get(id=id)
         file_serializer = SubmissionSerializer(file)
@@ -444,10 +447,9 @@ class SubmissionView(APIView):
         if os.path.exists(f"media/{file.file}"):
             os.remove(f"media/{file.file}")
 
-        return Response({
-            "status": "success",
-            "data": file_serializer.data,
-        }, status=status.HTTP_201_CREATED)
+        return Response(
+            file_serializer.data,
+            status=status.HTTP_201_CREATED)
 
     def get(self, request):
 
@@ -457,20 +459,20 @@ class SubmissionView(APIView):
             return Response({"status": "error", "data": [], "message": "User not found"},
                             status=status.HTTP_404_NOT_FOUND)
 
-        question = Submission.objects.get(user_id=user)
-        if not question:
+        sub = Submission.objects.get(user_id=user)
+        if not sub:
             return Response({
                 "status": "success",
                 "message": "No question with id"
             }, status=status.HTTP_404_NOT_FOUND)
 
-        files = Submission.objects.filter(assignment_id=question)
+        files = Submission.objects.filter(assignment_id=sub)
         file_serializer = SubmissionSerializer(files, many=True)
 
         return Response({
             "status": "success",
             "data": file_serializer.data,
-            "message": "Question added"
+            "message": "Assignment added"
         }, status=status.HTTP_200_OK)
 
     def get(self, request, id):
@@ -487,14 +489,14 @@ class SubmissionView(APIView):
                 "message": "Unauthorized"
             }, status=status.HTTP_401_UNAUTHORIZED)
 
-        question = Submission.objects.get(id=id)
-        if not question:
+        sub = Submission.objects.get(id=id)
+        if not sub:
             return Response({
                 "status": "success",
                 "message": "No submission with id"
             }, status=status.HTTP_404_NOT_FOUND)
 
-        files = Submission.objects.filter(assignment_id=question)
+        files = Submission.objects.filter(assignment_id=sub)
         file_serializer = SubmissionSerializer(files, many=True)
 
         return Response({

@@ -361,7 +361,7 @@ class Runner:
             database="autograder"
         )
         mycursor = mydb.cursor()
-        sql = """UPDATE grader_file SET result = '""" + json.dumps(diction) + """' WHERE id = '""" + self.file_id + """' """
+        sql = """UPDATE grader_submission SET result = '""" + json.dumps(diction) + """' WHERE id = '""" + self.file_id + """' """
         mycursor.execute(sql)
         mydb.commit()
         submission.register_final_grade(self.grader.config.total_score_to_100_ratio)

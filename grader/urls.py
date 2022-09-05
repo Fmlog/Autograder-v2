@@ -13,6 +13,6 @@ urlpatterns = [
     path('submission/<str:id>', views.SubmissionView.as_view()),
     path('submission/<str:id>/last', views.getLastSubmission),
     path('submission/<str:id>/<str:user_id>>', views.getUserSubmission),
-    path('testcase/', views.TestCaseView.as_view()),
+    path('testcase', views.TestCaseView.as_view()),
     path('testcase/<str:id>', views.TestCaseView.as_view()),
 ]
