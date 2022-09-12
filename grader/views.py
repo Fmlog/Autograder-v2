@@ -17,7 +17,6 @@ from home.models import User
 from grader.serializers import AssignmentSerializer, CourseSerializer, SubmissionSerializer, TestCaseSerializer
 
 
-
 def slug_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
@@ -127,8 +126,6 @@ def getUserSubmission(request, id, user_id):
         "message": "last submission"
     }, status=status.HTTP_200_OK)
 
-# @method_decorator(csrf_exempt, name='dispatch')
-
 
 class CourseList(APIView):
 
@@ -204,7 +201,6 @@ class CourseView(APIView):
         }, status=status.HTTP_200_OK)
 
 
-# @method_decorator(csrf_exempt, name='dispatch')
 class AssignmentView(APIView):
 
     def post(self, request):
@@ -252,8 +248,7 @@ class AssignmentView(APIView):
             return Response({"status": "error", "data": [], "message": "User not found"},
                             status=status.HTTP_404_NOT_FOUND)
 
-        #course = request.data['course_id']
-        quest = Assignment.objects.all()
+        quest = Assignment.objects.filter(id=user.id)
         question = AssignmentSerializer(quest, many=True)
         return Response(
             question.data,
@@ -412,7 +407,7 @@ class SubmissionView(APIView):
         file = Submission.objects.get(id=id)
         # run the autograder
         os.system(
-            f"python3 ./tester.py 'media/upload/{file.assignment.slug}' '{file.id}'")
+            f"python3 ./runner.py 'media/upload/{file.assignment.slug}' '{file.id}'")
 
         file = Submission.objects.get(id=id)
         file_serializer = SubmissionSerializer(file)

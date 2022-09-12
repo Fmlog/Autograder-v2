@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'home',
     'grader',
     'media',
-    'autograderstable'
+    'grader_core',
 ]
 
 MIDDLEWARE = [
