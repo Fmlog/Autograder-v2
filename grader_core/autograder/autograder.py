@@ -345,7 +345,6 @@ class Runner:
                 self.grader.config.testcase_compilation_args[test.name],
                 self.grader.config.testcase_runtime_args[test.name],
             )
-            # print(result)
             diction[f"testcase {num}"] = {
                 "result": result.grade
             }
