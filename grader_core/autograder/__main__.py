@@ -109,7 +109,7 @@ def _add_submission_list_argument(parser: argparse.ArgumentParser):
 
 
 def _evaluate_args(args: argparse.Namespace, current_dir: Path):
-    from autograderstable.autograder.autograder import AutograderPaths, Grader
+    from grader_core.autograder.autograder import AutograderPaths, Grader
 
     if args.command == "guide":
         from autograder import guide

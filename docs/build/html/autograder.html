@@ -1,0 +1,756 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="plagiarism_detection package" href="autograder.plagiarism_detection.html" /><link rel="prev" title="Submodules" href="home.html" />
+
+    <meta name="generator" content="sphinx-5.1.1, furo 2022.09.15"/>
+        <title>Subpackages - Autograder 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Autograder 0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Autograder 0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">Autograder Web application</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Autograder.html">Autograder package</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="Autograder.html#autograder-web-application">Autograder Web application</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="grader.html">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grader.html#module-grader.models">models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grader.html#module-grader.serializers">serializers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grader.html#module-grader.tests">tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grader.html#module-grader.urls">urls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grader.html#module-grader.views">views</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="Autograder.html#user-web-application">User Web application</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="home.html">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.models">models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.serializers">serializers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.softDelete">softDelete</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.tests">tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.tokens">tokens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.urls">urls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.views">views</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="Autograder.html#autograder-core">Autograder core</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current has-children current-page"><a class="current reference internal" href="#">Subpackages</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autograder.plagiarism_detection.html">plagiarism_detection package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autograder.testcase_utils.html">testcase_utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-grader_core.autograder.autograder">autograder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-grader_core.autograder.config_manager">config_manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-grader_core.autograder.default_stdout_formatters">default_stdout_formatters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-grader_core.autograder.guide">guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-grader_core.autograder.output_summary">output_summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-grader_core.autograder.util">util</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="subpackages">
+<h1>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autograder.plagiarism_detection.html">plagiarism_detection package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autograder.plagiarism_detection.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autograder.plagiarism_detection.html#comparison">comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autograder.plagiarism_detection.html#plagiarism-detection">plagiarism_detection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autograder.testcase_utils.html">testcase_utils package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autograder.testcase_utils.html#module-grader_core.autograder.testcase_utils.abstract_testcase">abstract_testcase module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autograder.testcase_utils.html#module-grader_core.autograder.testcase_utils.exit_codes">exit_codes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autograder.testcase_utils.html#module-grader_core.autograder.testcase_utils.shell">shell module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autograder.testcase_utils.html#module-grader_core.autograder.testcase_utils.stdout_testcase">stdout_testcase module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autograder.testcase_utils.html#module-grader_core.autograder.testcase_utils.submission">submission module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autograder.testcase_utils.html#module-grader_core.autograder.testcase_utils.test_helper_formatter">test_helper_formatter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autograder.testcase_utils.html#module-grader_core.autograder.testcase_utils.testcase_io">testcase_io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autograder.testcase_utils.html#module-grader_core.autograder.testcase_utils.testcase_picker">testcase_picker module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autograder.testcase_utils.html#module-grader_core.autograder.testcase_utils.testcase_result_validator">testcase_result_validator module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-grader_core.autograder.autograder">
+<span id="autograder"></span><h1>autograder<a class="headerlink" href="#module-grader_core.autograder.autograder" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AutograderPaths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.__init__" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates the grading directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>current_dir</strong> – Path of the grading instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.generate_config">
+<span class="sig-name descname"><span class="pre">generate_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.generate_config" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates a config file</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.config">
+<span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.config" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.current_dir">
+<span class="sig-name descname"><span class="pre">current_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.current_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.default_config">
+<span class="sig-name descname"><span class="pre">default_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.default_config" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.default_stdout_formatters">
+<span class="sig-name descname"><span class="pre">default_stdout_formatters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.default_stdout_formatters" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.extra_dir">
+<span class="sig-name descname"><span class="pre">extra_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.extra_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.input_dir">
+<span class="sig-name descname"><span class="pre">input_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.input_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.output_dir">
+<span class="sig-name descname"><span class="pre">output_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.output_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.output_summary">
+<span class="sig-name descname"><span class="pre">output_summary</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.output_summary" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.required_dirs">
+<span class="sig-name descname"><span class="pre">required_dirs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.required_dirs" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.results_dir">
+<span class="sig-name descname"><span class="pre">results_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.results_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.stdout_formatters">
+<span class="sig-name descname"><span class="pre">stdout_formatters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.stdout_formatters" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.testcase_types_dir">
+<span class="sig-name descname"><span class="pre">testcase_types_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.testcase_types_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.testcases_dir">
+<span class="sig-name descname"><span class="pre">testcases_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.testcases_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.AutograderPaths.tests_dir">
+<span class="sig-name descname"><span class="pre">tests_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.AutograderPaths.tests_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Grader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">submissions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.autograder.Grader" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">submissions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#grader_core.autograder.autograder.Grader.__init__" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates a grading instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_dir</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code>) – Path of the grading instance</p></li>
+<li><p><strong>json_output</strong> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>) – bool = False, defaults to False</p></li>
+<li><p><strong>submissions</strong> – Paths for submission(s)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.cleanup">
+<span class="sig-name descname"><span class="pre">cleanup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#grader_core.autograder.autograder.Grader.cleanup" title="Permalink to this definition">#</a></dt>
+<dd><p>Deletes temporary files created by the program.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.submission.Submission" title="grader_core.autograder.testcase_utils.submission.Submission"><span class="pre">Submission</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#grader_core.autograder.autograder.Grader.run" title="Permalink to this definition">#</a></dt>
+<dd><p>Runs the grading instance and returns submissions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> – The id of the submission to get</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.config">
+<span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#grader_core.autograder.config_manager.GradingConfig" title="grader_core.autograder.config_manager.GradingConfig"><span class="pre">GradingConfig</span></a></em><a class="headerlink" href="#grader_core.autograder.autograder.Grader.config" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.extra_testcase_types">
+<span class="sig-name descname"><span class="pre">extra_testcase_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.abstract_testcase.TestCase" title="grader_core.autograder.testcase_utils.abstract_testcase.TestCase"><span class="pre">TestCase</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#grader_core.autograder.autograder.Grader.extra_testcase_types" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.json_output">
+<span class="sig-name descname"><span class="pre">json_output</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#grader_core.autograder.autograder.Grader.json_output" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#grader_core.autograder.output_summary.GradingOutputLogger" title="grader_core.autograder.output_summary.GradingOutputLogger"><span class="pre">GradingOutputLogger</span></a></em><a class="headerlink" href="#grader_core.autograder.autograder.Grader.logger" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.paths">
+<span class="sig-name descname"><span class="pre">paths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#grader_core.autograder.autograder.AutograderPaths" title="grader_core.autograder.autograder.AutograderPaths"><span class="pre">AutograderPaths</span></a></em><a class="headerlink" href="#grader_core.autograder.autograder.Grader.paths" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.raw_submissions">
+<span class="sig-name descname"><span class="pre">raw_submissions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#grader_core.autograder.autograder.Grader.raw_submissions" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.submissions">
+<span class="sig-name descname"><span class="pre">submissions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.submission.Submission" title="grader_core.autograder.testcase_utils.submission.Submission"><span class="pre">Submission</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#grader_core.autograder.autograder.Grader.submissions" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.temp_dir">
+<span class="sig-name descname"><span class="pre">temp_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#grader_core.autograder.autograder.Grader.temp_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.testcase_picker">
+<span class="sig-name descname"><span class="pre">testcase_picker</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.testcase_picker.TestCasePicker" title="grader_core.autograder.testcase_utils.testcase_picker.TestCasePicker"><span class="pre">TestCasePicker</span></a></em><a class="headerlink" href="#grader_core.autograder.autograder.Grader.testcase_picker" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Grader.tests">
+<span class="sig-name descname"><span class="pre">tests</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.abstract_testcase.TestCase" title="grader_core.autograder.testcase_utils.abstract_testcase.TestCase"><span class="pre">TestCase</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.abstract_testcase.TestCase" title="grader_core.autograder.testcase_utils.abstract_testcase.TestCase"><span class="pre">TestCase</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#grader_core.autograder.autograder.Grader.tests" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Runner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Runner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grader</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#grader_core.autograder.autograder.Grader" title="grader_core.autograder.autograder.Grader"><span class="pre">Grader</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Lock</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">testcase_picker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.testcase_picker.TestCasePicker" title="grader_core.autograder.testcase_utils.testcase_picker.TestCasePicker"><span class="pre">TestCasePicker</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.autograder.Runner" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Runner.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grader</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#grader_core.autograder.autograder.Grader" title="grader_core.autograder.autograder.Grader"><span class="pre">Grader</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Lock</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">testcase_picker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.testcase_picker.TestCasePicker" title="grader_core.autograder.testcase_utils.testcase_picker.TestCasePicker"><span class="pre">TestCasePicker</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#grader_core.autograder.autograder.Runner.__init__" title="Permalink to this definition">#</a></dt>
+<dd><p>Runs grader instance against submissions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grader</strong> (<a class="reference internal" href="#grader_core.autograder.autograder.Grader" title="grader_core.autograder.autograder.Grader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Grader</span></code></a>) – grader instance</p></li>
+<li><p><strong>lock</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Lock</span></code>) – Lock for asynchronous grading</p></li>
+<li><p><strong>testcase_picker</strong> (<a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.testcase_picker.TestCasePicker" title="grader_core.autograder.testcase_utils.testcase_picker.TestCasePicker"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestCasePicker</span></code></a>) – TestCasePicker</p></li>
+<li><p><strong>id</strong> – The id of the submission</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Runner.run_on_single_submission">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run_on_single_submission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submission</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.submission.Submission" title="grader_core.autograder.testcase_utils.submission.Submission"><span class="pre">Submission</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Lock</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#grader_core.autograder.autograder.Runner.run_on_single_submission" title="Permalink to this definition">#</a></dt>
+<dd><p>Called on every submission in the directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>submission</strong> (<a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.submission.Submission" title="grader_core.autograder.testcase_utils.submission.Submission"><em>Submission</em></a>) – The submission object that is being processed</p></li>
+<li><p><strong>lock</strong> (<em>asyncio.Lock</em>) – asyncio.Lock</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Runner.grader">
+<span class="sig-name descname"><span class="pre">grader</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#grader_core.autograder.autograder.Grader" title="grader_core.autograder.autograder.Grader"><span class="pre">Grader</span></a></em><a class="headerlink" href="#grader_core.autograder.autograder.Runner.grader" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Runner.lock">
+<span class="sig-name descname"><span class="pre">lock</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Lock</span></em><a class="headerlink" href="#grader_core.autograder.autograder.Runner.lock" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.autograder.Runner.testcase_picker">
+<span class="sig-name descname"><span class="pre">testcase_picker</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.testcase_picker.TestCasePicker" title="grader_core.autograder.testcase_utils.testcase_picker.TestCasePicker"><span class="pre">TestCasePicker</span></a></em><a class="headerlink" href="#grader_core.autograder.autograder.Runner.testcase_picker" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-grader_core.autograder.config_manager">
+<span id="config-manager"></span><h1>config_manager<a class="headerlink" href="#module-grader_core.autograder.config_manager" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.ArgList">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ArgList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.config_manager.ArgList" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">TESTNAME</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">VT</span></code>]</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.ArgList.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">TESTNAME</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">VT</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fallback_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">VT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_value_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TESTNAME</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'DEFAULT'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#grader_core.autograder.config_manager.ArgList.__init__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.ArgList.default_value_key">
+<span class="sig-name descname"><span class="pre">default_value_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TESTNAME</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DEFAULT'</span></em><a class="headerlink" href="#grader_core.autograder.config_manager.ArgList.default_value_key" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.ArgList.fallback_value">
+<span class="sig-name descname"><span class="pre">fallback_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">VT</span></em><a class="headerlink" href="#grader_core.autograder.config_manager.ArgList.fallback_value" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.ArgList.mapping">
+<span class="sig-name descname"><span class="pre">mapping</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">TESTNAME</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">VT</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#grader_core.autograder.config_manager.ArgList.mapping" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GradingConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig.__init__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig.any_submission_file_name_is_allowed">
+<span class="sig-name descname"><span class="pre">any_submission_file_name_is_allowed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig.any_submission_file_name_is_allowed" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig.assignment_name">
+<span class="sig-name descname"><span class="pre">assignment_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig.assignment_name" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig.file">
+<span class="sig-name descname"><span class="pre">file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig.file" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig.generate_results">
+<span class="sig-name descname"><span class="pre">generate_results</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig.generate_results" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig.generate_student_outputs">
+<span class="sig-name descname"><span class="pre">generate_student_outputs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig.generate_student_outputs" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig.possible_source_file_stems">
+<span class="sig-name descname"><span class="pre">possible_source_file_stems</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig.possible_source_file_stems" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig.stdout_only_grading_enabled">
+<span class="sig-name descname"><span class="pre">stdout_only_grading_enabled</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig.stdout_only_grading_enabled" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig.testcase_weights">
+<span class="sig-name descname"><span class="pre">testcase_weights</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#grader_core.autograder.config_manager.ArgList" title="grader_core.autograder.config_manager.ArgList"><span class="pre">ArgList</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig.testcase_weights" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig.timeouts">
+<span class="sig-name descname"><span class="pre">timeouts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#grader_core.autograder.config_manager.ArgList" title="grader_core.autograder.config_manager.ArgList"><span class="pre">ArgList</span></a><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig.timeouts" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig.total_points_possible">
+<span class="sig-name descname"><span class="pre">total_points_possible</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig.total_points_possible" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.config_manager.GradingConfig.total_score_to_100_ratio">
+<span class="sig-name descname"><span class="pre">total_score_to_100_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#grader_core.autograder.config_manager.GradingConfig.total_score_to_100_ratio" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-grader_core.autograder.default_stdout_formatters">
+<span id="default-stdout-formatters"></span><h1>default_stdout_formatters<a class="headerlink" href="#module-grader_core.autograder.default_stdout_formatters" title="Permalink to this heading">#</a></h1>
+</section>
+<section id="module-grader_core.autograder.guide">
+<span id="guide"></span><h1>guide<a class="headerlink" href="#module-grader_core.autograder.guide" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="grader_core.autograder.guide.create_dir">
+<span class="sig-name descname"><span class="pre">create_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.guide.create_dir" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader_core.autograder.guide.main">
+<span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#grader_core.autograder.autograder.AutograderPaths" title="grader_core.autograder.autograder.AutograderPaths"><span class="pre">AutograderPaths</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.guide.main" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader_core.autograder.guide.safe_copytree">
+<span class="sig-name descname"><span class="pre">safe_copytree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symlinks=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_function=&lt;function</span> <span class="pre">copy2&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_dangling_symlinks=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirs_exist_ok=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.guide.safe_copytree" title="Permalink to this definition">#</a></dt>
+<dd><p>This is a newer version of copytree only available for python3.8
+We need it because it has a dirs_exist_ok keyword arg</p>
+</dd></dl>
+
+</section>
+<section id="module-grader_core.autograder.output_summary">
+<span id="output-summary"></span><h1>output_summary<a class="headerlink" href="#module-grader_core.autograder.output_summary" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="grader_core.autograder.output_summary.GradingOutputLogger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GradingOutputLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_results_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignment_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_points_possible</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generate_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.output_summary.GradingOutputLogger" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.output_summary.GradingOutputLogger.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_results_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignment_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_points_possible</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generate_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.output_summary.GradingOutputLogger.__init__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.output_summary.GradingOutputLogger.print_final_score">
+<span class="sig-name descname"><span class="pre">print_final_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submissions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.submission.Submission" title="grader_core.autograder.testcase_utils.submission.Submission"><span class="pre">Submission</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.output_summary.GradingOutputLogger.print_final_score" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.output_summary.GradingOutputLogger.print_key">
+<span class="sig-name descname"><span class="pre">print_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.output_summary.GradingOutputLogger.print_key" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.output_summary.GradingOutputLogger.print_single_student_grading_results">
+<span class="sig-name descname"><span class="pre">print_single_student_grading_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submission</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.submission.Submission" title="grader_core.autograder.testcase_utils.submission.Submission"><span class="pre">Submission</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.output_summary.GradingOutputLogger.print_single_student_grading_results" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader_core.autograder.output_summary.GradingOutputLogger.LOGGER_NAME">
+<span class="sig-name descname"><span class="pre">LOGGER_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Autograder'</span></em><a class="headerlink" href="#grader_core.autograder.output_summary.GradingOutputLogger.LOGGER_NAME" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader_core.autograder.output_summary.JsonGradingOutputLogger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">JsonGradingOutputLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.output_summary.JsonGradingOutputLogger" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#grader_core.autograder.output_summary.GradingOutputLogger" title="grader_core.autograder.output_summary.GradingOutputLogger"><code class="xref py py-class docutils literal notranslate"><span class="pre">GradingOutputLogger</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.output_summary.JsonGradingOutputLogger.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#grader_core.autograder.output_summary.JsonGradingOutputLogger.__init__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.output_summary.JsonGradingOutputLogger.print_final_score">
+<span class="sig-name descname"><span class="pre">print_final_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submissions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="autograder.testcase_utils.html#grader_core.autograder.testcase_utils.submission.Submission" title="grader_core.autograder.testcase_utils.submission.Submission"><span class="pre">Submission</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.output_summary.JsonGradingOutputLogger.print_final_score" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader_core.autograder.output_summary.JsonGradingOutputLogger.print_key">
+<span class="sig-name descname"><span class="pre">print_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#grader_core.autograder.output_summary.JsonGradingOutputLogger.print_key" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-grader_core.autograder.util">
+<span id="util"></span><h1>util<a class="headerlink" href="#module-grader_core.autograder.util" title="Permalink to this heading">#</a></h1>
+<dl class="py exception">
+<dt class="sig sig-object py" id="grader_core.autograder.util.AutograderError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AutograderError</span></span><a class="headerlink" href="#grader_core.autograder.util.AutograderError" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>The base class for all exceptions that are raised from the incorrect use of Autograder</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader_core.autograder.util.get_file_names">
+<span class="sig-name descname"><span class="pre">get_file_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#grader_core.autograder.util.get_file_names" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader_core.autograder.util.hide_path_to_directory">
+<span class="sig-name descname"><span class="pre">hide_path_to_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string_to_hide_path_from</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_hide</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'...'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#grader_core.autograder.util.hide_path_to_directory" title="Permalink to this definition">#</a></dt>
+<dd><p>To prevent students from knowing the structure of instructor’s directories, we remove the middle
+part of the path to student’s file from output.</p>
+<p>Sometimes compilers output a longer/shorter path. For example, gcc through wsl will not start paths
+with “mnt/” while python will so we cut out the beginning and end of the path to hide the more important
+middle part of it.</p>
+<p>The length check is done to prevent indexing exceptions or corruption of output
+in case the path to remove is too short. For example,
+&gt;&gt;&gt; “Hello. World.”.replace(str(Path(“.”)), “…”) == “Hello… World…”
+&gt;&gt;&gt; “abc”.replace(“”, “…”) == …a…b…c…</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader_core.autograder.util.import_from_path">
+<span class="sig-name descname"><span class="pre">import_from_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">module</span></span></span><a class="headerlink" href="#grader_core.autograder.util.import_from_path" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="autograder.plagiarism_detection.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">plagiarism_detection package</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="home.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Submodules</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Femi Alogba
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>

@@ -4,8 +4,8 @@ import sys
 from pathlib import Path
 from typing import List
 
-from autograderstable.autograder.testcase_utils.abstract_testcase import TestCase as AbstractTestCase
-from autograderstable.autograder.testcase_utils.shell import EMPTY_COMMAND, ShellError, get_shell_command
+from grader_core.autograder.testcase_utils.abstract_testcase import TestCase as AbstractTestCase
+from grader_core.autograder.testcase_utils.shell import EMPTY_COMMAND, ShellError, get_shell_command
 
 
 class TestCase(AbstractTestCase):

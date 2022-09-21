@@ -1,0 +1,29 @@
+plagiarism\_detection package
+=============================
+
+Submodules
+----------
+
+plagiarism\_detection.comparison module
+---------------------------------------
+
+.. automodule:: plagiarism_detection.comparison
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+plagiarism\_detection.plagiarism\_detection module
+--------------------------------------------------
+
+.. automodule:: plagiarism_detection.plagiarism_detection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: plagiarism_detection
+   :members:
+   :undoc-members:
+   :show-inheritance:

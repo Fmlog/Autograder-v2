@@ -3,7 +3,7 @@ from itertools import chain
 from pathlib import Path
 from typing import List, Optional, Sequence, Type
 
-from autograderstable.autograder.util import AutograderError, import_from_path
+from grader_core.autograder.util import AutograderError, import_from_path
 
 from .abstract_testcase import TestCase
 from .stdout_testcase import StdoutOnlyTestCase

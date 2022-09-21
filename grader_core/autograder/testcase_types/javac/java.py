@@ -5,11 +5,11 @@ import sys
 from pathlib import Path
 from typing import Any, List, Mapping
 
-from autograderstable.autograder.config_manager import GradingConfig
-from autograderstable.autograder.testcase_utils.abstract_testcase import TestCase as AbstractTestCase
-from autograderstable.autograder.testcase_utils.shell import EMPTY_COMMAND, ShellError, get_shell_command
-from autograderstable.autograder.testcase_utils.submission import find_appropriate_source_file_stem
-from autograderstable.autograder.util import AutograderError
+from grader_core.autograder.config_manager import GradingConfig
+from grader_core.autograder.testcase_utils.abstract_testcase import TestCase as AbstractTestCase
+from grader_core.autograder.testcase_utils.shell import EMPTY_COMMAND, ShellError, get_shell_command
+from grader_core.autograder.testcase_utils.submission import find_appropriate_source_file_stem
+from grader_core.autograder.util import AutograderError
 
 PUBLIC_CLASS_MATCHER = re.compile(r"public(?:\w|\s)+class(?:\w|\s)+({)")
 

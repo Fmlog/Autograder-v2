@@ -1,0 +1,955 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Submodules" href="home.html" /><link rel="prev" title="Autograder package" href="Autograder.html" />
+
+    <meta name="generator" content="sphinx-5.1.1, furo 2022.09.15"/>
+        <title>Submodules - Autograder 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Autograder 0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Autograder 0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">Autograder Web application</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Autograder.html">Autograder package</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="Autograder.html#autograder-web-application">Autograder Web application</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-grader.models">models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-grader.serializers">serializers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-grader.tests">tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-grader.urls">urls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-grader.views">views</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="Autograder.html#user-web-application">User Web application</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="home.html">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.models">models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.serializers">serializers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.softDelete">softDelete</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.tests">tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.tokens">tokens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.urls">urls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="home.html#module-home.views">views</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="Autograder.html#autograder-core">Autograder core</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="autograder.html">Subpackages</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="autograder.plagiarism_detection.html">plagiarism_detection package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autograder.testcase_utils.html">testcase_utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autograder.html#module-grader_core.autograder.autograder">autograder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autograder.html#module-grader_core.autograder.config_manager">config_manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autograder.html#module-grader_core.autograder.default_stdout_formatters">default_stdout_formatters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autograder.html#module-grader_core.autograder.guide">guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autograder.html#module-grader_core.autograder.output_summary">output_summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autograder.html#module-grader_core.autograder.util">util</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="submodules">
+<h1>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h1>
+</section>
+<section id="module-grader.models">
+<span id="models"></span><h1>models<a class="headerlink" href="#module-grader.models" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.models.Assignment">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Assignment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deleted_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">course</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slug</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.models.Assignment" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="home.html#home.softDelete.SoftDeleteModel" title="home.softDelete.SoftDeleteModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SoftDeleteModel</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>deleted_at</strong> (<em>DateTimeField</em>) – Deleted at</p></li>
+<li><p><strong>id</strong> (<em>AutoField</em>) – Id</p></li>
+<li><p><strong>name</strong> (<em>CharField</em>) – Name</p></li>
+<li><p><strong>description</strong> (<em>TextField</em>) – Description</p></li>
+<li><p><strong>course</strong> (ForeignKey to <a class="reference internal" href="#grader.models.Course" title="grader.models.Course"><code class="xref py py-class docutils literal notranslate"><span class="pre">Course</span></code></a>) – Course</p></li>
+<li><p><strong>slug</strong> (<em>CharField</em>) – Slug</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="grader.models.Assignment.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#grader.models.Assignment.DoesNotExist" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="grader.models.Assignment.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#grader.models.Assignment.MultipleObjectsReturned" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Assignment.course">
+<span class="sig-name descname"><span class="pre">course</span></span><a class="headerlink" href="#grader.models.Assignment.course" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> course, accesses the <a class="reference internal" href="#grader.models.Course" title="grader.models.Course"><code class="xref py py-class docutils literal notranslate"><span class="pre">Course</span></code></a> model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Assignment.course_id">
+<span class="sig-name descname"><span class="pre">course_id</span></span><a class="headerlink" href="#grader.models.Assignment.course_id" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> course</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Assignment.deleted_at">
+<span class="sig-name descname"><span class="pre">deleted_at</span></span><a class="headerlink" href="#grader.models.Assignment.deleted_at" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> deleted at</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Assignment.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#grader.models.Assignment.description" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> description</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Assignment.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#grader.models.Assignment.id" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> id</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Assignment.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#grader.models.Assignment.name" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Assignment.slug">
+<span class="sig-name descname"><span class="pre">slug</span></span><a class="headerlink" href="#grader.models.Assignment.slug" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> slug</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Assignment.submission_set">
+<span class="sig-name descname"><span class="pre">submission_set</span></span><a class="headerlink" href="#grader.models.Assignment.submission_set" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> assignment, accesses the M2M <a class="reference internal" href="#grader.models.Submission" title="grader.models.Submission"><code class="xref py py-class docutils literal notranslate"><span class="pre">Submission</span></code></a> model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Assignment.testcase_set">
+<span class="sig-name descname"><span class="pre">testcase_set</span></span><a class="headerlink" href="#grader.models.Assignment.testcase_set" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> assignment, accesses the M2M <a class="reference internal" href="#grader.models.TestCase" title="grader.models.TestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></a> model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.models.Course">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Course</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deleted_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">course_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.models.Course" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="home.html#home.softDelete.SoftDeleteModel" title="home.softDelete.SoftDeleteModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SoftDeleteModel</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>deleted_at</strong> (<em>DateTimeField</em>) – Deleted at</p></li>
+<li><p><strong>id</strong> (<em>AutoField</em>) – Id</p></li>
+<li><p><strong>course_code</strong> (<em>CharField</em>) – Course code</p></li>
+<li><p><strong>name</strong> (<em>CharField</em>) – Name</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="grader.models.Course.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#grader.models.Course.DoesNotExist" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="grader.models.Course.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#grader.models.Course.MultipleObjectsReturned" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Course.assignment_set">
+<span class="sig-name descname"><span class="pre">assignment_set</span></span><a class="headerlink" href="#grader.models.Course.assignment_set" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> course, accesses the M2M <a class="reference internal" href="#grader.models.Assignment" title="grader.models.Assignment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Assignment</span></code></a> model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Course.course_code">
+<span class="sig-name descname"><span class="pre">course_code</span></span><a class="headerlink" href="#grader.models.Course.course_code" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> course code</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Course.deleted_at">
+<span class="sig-name descname"><span class="pre">deleted_at</span></span><a class="headerlink" href="#grader.models.Course.deleted_at" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> deleted at</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Course.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#grader.models.Course.id" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> id</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Course.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#grader.models.Course.name" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> name</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.models.Submission">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Submission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grade</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.models.Submission" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>CharField</em>) – Id</p></li>
+<li><p><strong>assignment</strong> (ForeignKey to <a class="reference internal" href="#grader.models.Assignment" title="grader.models.Assignment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Assignment</span></code></a>) – Assignment</p></li>
+<li><p><strong>user</strong> (ForeignKey to <a class="reference internal" href="home.html#home.models.User" title="home.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a>) – User</p></li>
+<li><p><strong>file</strong> (<em>FileField</em>) – File</p></li>
+<li><p><strong>result</strong> (<em>JSONField</em>) – Result</p></li>
+<li><p><strong>grade</strong> (<em>CharField</em>) – Grade</p></li>
+<li><p><strong>timestamp</strong> (<em>DateTimeField</em>) – Timestamp</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="grader.models.Submission.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#grader.models.Submission.DoesNotExist" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="grader.models.Submission.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#grader.models.Submission.MultipleObjectsReturned" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.models.Submission.filename">
+<span class="sig-name descname"><span class="pre">filename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#grader.models.Submission.filename" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.models.Submission.get_next_by_timestamp">
+<span class="sig-name descname"><span class="pre">get_next_by_timestamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">timestamp&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.models.Submission.get_next_by_timestamp" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Autogenerated:</strong> Finds next instance based on <a class="reference internal" href="#grader.models.Submission.timestamp" title="grader.models.Submission.timestamp"><code class="xref py py-attr docutils literal notranslate"><span class="pre">timestamp</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.models.Submission.get_previous_by_timestamp">
+<span class="sig-name descname"><span class="pre">get_previous_by_timestamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">timestamp&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.models.Submission.get_previous_by_timestamp" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Autogenerated:</strong> Finds previous instance based on <a class="reference internal" href="#grader.models.Submission.timestamp" title="grader.models.Submission.timestamp"><code class="xref py py-attr docutils literal notranslate"><span class="pre">timestamp</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Submission.assignment">
+<span class="sig-name descname"><span class="pre">assignment</span></span><a class="headerlink" href="#grader.models.Submission.assignment" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> assignment, accesses the <a class="reference internal" href="#grader.models.Assignment" title="grader.models.Assignment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Assignment</span></code></a> model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Submission.assignment_id">
+<span class="sig-name descname"><span class="pre">assignment_id</span></span><a class="headerlink" href="#grader.models.Submission.assignment_id" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> assignment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Submission.file">
+<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#grader.models.Submission.file" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> file</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Submission.grade">
+<span class="sig-name descname"><span class="pre">grade</span></span><a class="headerlink" href="#grader.models.Submission.grade" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> grade</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Submission.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#grader.models.Submission.id" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> id</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Submission.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#grader.models.Submission.objects" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Submission.result">
+<span class="sig-name descname"><span class="pre">result</span></span><a class="headerlink" href="#grader.models.Submission.result" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> result</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Submission.timestamp">
+<span class="sig-name descname"><span class="pre">timestamp</span></span><a class="headerlink" href="#grader.models.Submission.timestamp" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> timestamp</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Submission.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#grader.models.Submission.user" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> user, accesses the <a class="reference internal" href="home.html#home.models.User" title="home.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a> model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.Submission.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#grader.models.Submission.user_id" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> user</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.models.TestCase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TestCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deleted_at</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.models.TestCase" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="home.html#home.softDelete.SoftDeleteModel" title="home.softDelete.SoftDeleteModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SoftDeleteModel</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>deleted_at</strong> (<em>DateTimeField</em>) – Deleted at</p></li>
+<li><p><strong>id</strong> (<em>CharField</em>) – Id</p></li>
+<li><p><strong>file</strong> (<em>FileField</em>) – File</p></li>
+<li><p><strong>assignment</strong> (ForeignKey to <a class="reference internal" href="#grader.models.Assignment" title="grader.models.Assignment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Assignment</span></code></a>) – Assignment</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="grader.models.TestCase.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#grader.models.TestCase.DoesNotExist" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="grader.models.TestCase.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#grader.models.TestCase.MultipleObjectsReturned" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.TestCase.assignment">
+<span class="sig-name descname"><span class="pre">assignment</span></span><a class="headerlink" href="#grader.models.TestCase.assignment" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> assignment, accesses the <a class="reference internal" href="#grader.models.Assignment" title="grader.models.Assignment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Assignment</span></code></a> model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.TestCase.assignment_id">
+<span class="sig-name descname"><span class="pre">assignment_id</span></span><a class="headerlink" href="#grader.models.TestCase.assignment_id" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> assignment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.TestCase.deleted_at">
+<span class="sig-name descname"><span class="pre">deleted_at</span></span><a class="headerlink" href="#grader.models.TestCase.deleted_at" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> deleted at</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.TestCase.file">
+<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#grader.models.TestCase.file" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> file</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.models.TestCase.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#grader.models.TestCase.id" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Model field:</strong> id</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader.models.get_file_upload_to">
+<span class="sig-name descname"><span class="pre">get_file_upload_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.models.get_file_upload_to" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader.models.get_upload_to">
+<span class="sig-name descname"><span class="pre">get_upload_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.models.get_upload_to" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-grader.serializers">
+<span id="serializers"></span><h1>serializers<a class="headerlink" href="#module-grader.serializers" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.serializers.AssignmentSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AssignmentSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.serializers.AssignmentSerializer" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.serializers.CourseSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CourseSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.serializers.CourseSerializer" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.serializers.SubmissionSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SubmissionSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.serializers.SubmissionSerializer" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.serializers.TestCaseSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TestCaseSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.serializers.TestCaseSerializer" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-grader.tests">
+<span id="tests"></span><h1>tests<a class="headerlink" href="#module-grader.tests" title="Permalink to this heading">#</a></h1>
+</section>
+<section id="module-grader.urls">
+<span id="urls"></span><h1>urls<a class="headerlink" href="#module-grader.urls" title="Permalink to this heading">#</a></h1>
+</section>
+<section id="module-grader.views">
+<span id="views"></span><h1>views<a class="headerlink" href="#module-grader.views" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.views.AssignmentView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AssignmentView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.AssignmentView" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.AssignmentView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.AssignmentView.get" title="Permalink to this definition">#</a></dt>
+<dd><p>Retrieves all assignments created by a user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – The request object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.AssignmentView.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.AssignmentView.post" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates a new assignment with the request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – The request object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.views.AssignmentViewByID">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AssignmentViewByID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.AssignmentViewByID" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.AssignmentViewByID.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.AssignmentViewByID.delete" title="Permalink to this definition">#</a></dt>
+<dd><p>Delete assignment with the given id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – The request object</p></li>
+<li><p><strong>id</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – The id of the object to be deleted</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.AssignmentViewByID.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.AssignmentViewByID.get" title="Permalink to this definition">#</a></dt>
+<dd><p>Retrives an assignment by id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – The request object that was sent to the view</p></li>
+<li><p><strong>id</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – The id of the object to be retrieved</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.AssignmentViewByID.put">
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.AssignmentViewByID.put" title="Permalink to this definition">#</a></dt>
+<dd><p>Replace the assignment with id with the request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – The request object that was sent to the view</p></li>
+<li><p><strong>id</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – the id of the object you want to update</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.views.CourseView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CourseView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.CourseView" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.CourseView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.CourseView.get" title="Permalink to this definition">#</a></dt>
+<dd><p>Retrieves all courses in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The request object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.CourseView.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.CourseView.post" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates a new assignment with the request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> – The request object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.views.CourseViewByID">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CourseViewByID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.CourseViewByID" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.CourseViewByID.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.CourseViewByID.delete" title="Permalink to this definition">#</a></dt>
+<dd><p>Deletes the course with the given id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – The request object</p></li>
+<li><p><strong>id</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – The id of the object to be deleted</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.CourseViewByID.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.CourseViewByID.get" title="Permalink to this definition">#</a></dt>
+<dd><p>Gets the assignments in a course.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – http request</p></li>
+<li><p><strong>id</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – The id of the course to be retrieved</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.views.SubmissionView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SubmissionView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.SubmissionView" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.SubmissionView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.SubmissionView.get" title="Permalink to this definition">#</a></dt>
+<dd><p>A function that gets the id of the user and returns the user’s profile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – The request object that was sent to the view</p></li>
+<li><p><strong>id</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – The id of the object to be retrieved</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.SubmissionView.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.SubmissionView.post" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates a submission with the request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – The request object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="grader.views.SubmissionView.parser_classes">
+<span class="sig-name descname"><span class="pre">parser_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;class</span> <span class="pre">'rest_framework.parsers.MultiPartParser'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'rest_framework.parsers.FormParser'&gt;)</span></em><a class="headerlink" href="#grader.views.SubmissionView.parser_classes" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="grader.views.TestCaseView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TestCaseView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.TestCaseView" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.TestCaseView.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.TestCaseView.delete" title="Permalink to this definition">#</a></dt>
+<dd><p>Deletes testcase with the given id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – The request object</p></li>
+<li><p><strong>id</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – The id of the object to be deleted</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.TestCaseView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.TestCaseView.get" title="Permalink to this definition">#</a></dt>
+<dd><p>Retrieve testcase by id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – The request object that was sent to the view</p></li>
+<li><p><strong>id</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – The id of the object to be retrieved</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="grader.views.TestCaseView.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.TestCaseView.post" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates a new testcase with request</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – The request object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader.views.getAllSubmissions">
+<span class="sig-name descname"><span class="pre">getAllSubmissions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.getAllSubmissions" title="Permalink to this definition">#</a></dt>
+<dd><p>It returns all the submissions for a given assignment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The request object</p></li>
+<li><p><strong>id</strong> – the id of the assignment</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader.views.getCourseAssignment">
+<span class="sig-name descname"><span class="pre">getCourseAssignment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.getCourseAssignment" title="Permalink to this definition">#</a></dt>
+<dd><p>It gets the course assignment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The request object</p></li>
+<li><p><strong>id</strong> – the id of the course</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader.views.getLastSubmission">
+<span class="sig-name descname"><span class="pre">getLastSubmission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.getLastSubmission" title="Permalink to this definition">#</a></dt>
+<dd><p>It returns the last submission of a user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The request object</p></li>
+<li><p><strong>id</strong> – the id of the assignment</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>JSON data of the submission</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader.views.getUserSubmission">
+<span class="sig-name descname"><span class="pre">getUserSubmission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.getUserSubmission" title="Permalink to this definition">#</a></dt>
+<dd><p>It gets the user submission for a given question.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – The request object</p></li>
+<li><p><strong>id</strong> – the id of the assignment</p></li>
+<li><p><strong>user_id</strong> – The user’s id</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader.views.handle_uploaded_file">
+<span class="sig-name descname"><span class="pre">handle_uploaded_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.handle_uploaded_file" title="Permalink to this definition">#</a></dt>
+<dd><p>It takes a file object, and saves it to a file on the server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> – The file object that was uploaded</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader.views.slug_generator">
+<span class="sig-name descname"><span class="pre">slug_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.slug_generator" title="Permalink to this definition">#</a></dt>
+<dd><p>Generate slugs for assignment dir</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="grader.views.validate_user">
+<span class="sig-name descname"><span class="pre">validate_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HttpRequest</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grader.views.validate_user" title="Permalink to this definition">#</a></dt>
+<dd><p>It checks if the user is logged in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>request</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code>) – The request object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="home.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Submodules</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="Autograder.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Autograder package</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Femi Alogba
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>

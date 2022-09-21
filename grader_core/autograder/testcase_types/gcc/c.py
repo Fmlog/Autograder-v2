@@ -7,10 +7,10 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Any, List, Mapping, Optional
 
-from autograderstable.autograder.testcase_utils.abstract_testcase import TestCase as AbstractTestCase
-from autograderstable.autograder.testcase_utils.abstract_testcase import TestCaseResult
-from autograderstable.autograder.testcase_utils.shell import EMPTY_COMMAND, ShellCommand, get_shell_command
-from autograderstable.autograder.util import hide_path_to_directory
+from grader_core.autograder.testcase_utils.abstract_testcase import TestCase as AbstractTestCase
+from grader_core.autograder.testcase_utils.abstract_testcase import TestCaseResult
+from grader_core.autograder.testcase_utils.shell import EMPTY_COMMAND, ShellCommand, get_shell_command
+from grader_core.autograder.util import hide_path_to_directory
 
 INCLUDE_MEMLEAK: str = '\n#include "leak_detector_c.h"\n'
 MEMLEAK_DIR: Optional[TemporaryDirectory] = None

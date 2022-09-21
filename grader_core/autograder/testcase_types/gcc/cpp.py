@@ -1,5 +1,5 @@
-from autograderstable.autograder.testcase_types.gcc.c import TestCase as CTestCase
-from autograderstable.autograder.testcase_utils.shell import get_shell_command
+from grader_core.autograder.testcase_types.gcc.c import TestCase as CTestCase
+from grader_core.autograder.testcase_utils.shell import get_shell_command
 
 
 class TestCase(CTestCase):

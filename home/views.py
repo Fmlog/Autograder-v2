@@ -1,5 +1,4 @@
-from django.shortcuts import render, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate
 from rest_framework.views import APIView
 from .serializers import UserSerializers
 from rest_framework.response import Response
@@ -33,19 +32,11 @@ class RegisterStudentViews(APIView):
         serializer.validated_data['role'] = User.STUDENT
         serializer.save()
 
-        return Response({"status": "success", "data": serializer.data, "message": "user created"}, status=status.HTTP_200_OK)
-
-
-class RegisterAdminViews(APIView):
-    ''' Create new admin user '''
-
-    def post(self, request):
-        serializer = UserSerializers(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.validated_data['is_superuser'] = True
-        serializer.validated_data['is_staff'] = True
-        serializer.save()
-        return Response({"status": "success", "data": serializer.data, "message": "user created"}, status=status.HTTP_200_OK)
+        return Response({
+            "status": "success",
+            "data": serializer.data,
+            "message": "user created"
+        }, status=status.HTTP_200_OK)
 
 
 class LoginViews(APIView):

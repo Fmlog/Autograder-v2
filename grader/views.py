@@ -228,8 +228,8 @@ class AssignmentView(APIView):
         for f in request.FILES.getlist('file'):
             TestCase.objects.create(file=f, assignment=assignment)
 
-        from autograderstable.autograder.autograder import AutograderPaths
-        from autograderstable.autograder import guide
+        from grader_core.autograder.autograder import AutograderPaths
+        from grader_core.autograder import guide
 
         current_dir = f'media/upload/{assignment.slug}'
         os.mkdir(f"{current_dir}/")
