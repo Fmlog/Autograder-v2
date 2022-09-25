@@ -7,7 +7,7 @@ import time
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Callable, Dict, List, Optional, Set, Tuple, Type, Union
-
+import os
 from .config_manager import GradingConfig
 from .output_summary import GradingOutputLogger, JsonGradingOutputLogger
 from .testcase_utils.abstract_testcase import TestCase
@@ -17,13 +17,11 @@ from .testcase_utils.submission import Submission, find_appropriate_source_file_
 from .testcase_utils.testcase_io import TestCaseIO
 from .testcase_utils.testcase_picker import TestCasePicker
 from .util import AutograderError, get_file_names, hide_path_to_directory, import_from_path
-
 import mysql.connector
 import json
 
 
 EMPTY_TESTCASE_IO = TestCaseIO.get_empty_io()
-
 
 L = logging.getLogger("AUTOGRADER.grader")
 
@@ -329,7 +327,7 @@ class Runner:
                 self.testcase_picker,
             )
         except ShellError as e:
-            error = hide_path_to_directory(e.format("Failed to precompile:"), submission.temp_dir)
+            error = hide_path_to_directory(e.format("Failed to precomplied:"), submission.temp_dir)
             submission.register_precompilation_error(error)
             return
         allowed_tests = self.grader.tests.get(submission.type, [])
@@ -337,18 +335,14 @@ class Runner:
             submission.register_precompilation_error("No suitable testcases found.")
             return
         submission.type.run_additional_testcase_operations_in_student_dir(submission.temp_dir)
-        diction = {}
-        num = 1
+        diction = []
         for test in allowed_tests:
             result = await test.run(
                 precompiled_submission,
                 self.grader.config.testcase_compilation_args[test.name],
                 self.grader.config.testcase_runtime_args[test.name],
             )
-            diction[f"testcase {num}"] = {
-                "result": result.grade
-            }
-            num+= 1
+            
             message = hide_path_to_directory(result.message, submission.temp_dir)
             submission.add_grade(
                 test.name,
@@ -357,14 +351,22 @@ class Runner:
                 message,
                 result.extra_output_fields,
             )
+            diction.append({
+                "grade": result.grade,
+                "name": test.name,
+                "weight": test.weight,
+                "message": message,
+                "extra": result.extra_output_fields,
+            })
+        grades = []
+        grades.append(result.grade)
         grade = 0
-        for key, value in diction.items():
-            if value['result'] != 100:
+        for grade in grades:
+            if grade != 100:
                 grade = "0"
                 break
             else:
                 grade = "100"
-
 
         mydb = mysql.connector.connect(
             host="localhost",
@@ -372,8 +374,9 @@ class Runner:
             password="",
             database="autograder"
         )
+        result = json.dumps(diction)
         mycursor = mydb.cursor()
-        sql = """UPDATE grader_submission SET result = '""" + json.dumps(diction) + """', grade = """ + grade +""" WHERE id = '""" + self.file_id + """' """
-        mycursor.execute(sql)
+        id = str(self.file_id)
+        mycursor.execute("""UPDATE grader_submission SET result = %s, grade= %s WHERE id = %s""", (result, grade, id))
         mydb.commit()
         submission.register_final_grade(self.grader.config.total_score_to_100_ratio)

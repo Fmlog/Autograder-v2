@@ -4,8 +4,8 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.CourseList.as_view()),
-    path('<str:id>/', views.CourseView.as_view()),
+    path('', views.CourseView.as_view()),
+    path('<str:id>/', views.CourseViewByID.as_view()),
     path('assignment', views.AssignmentView.as_view()),
     path('assignment/<str:id>/', views.AssignmentViewByID.as_view()),
     path('assignment/course/<str:id>', views.getCourseAssignment),

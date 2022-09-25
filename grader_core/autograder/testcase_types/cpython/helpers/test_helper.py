@@ -10,6 +10,13 @@ def CHECK_STDOUT():
     exit({ % CHECK_STDOUT_EXIT_CODE % })
 
 def RESULT(r: float):
+    """
+    Printing the result of the function to stdout and exiting the program.
+
+    
+    :param r: the result of the function
+    :type r: float
+    """
     print(f"\n{r}{ % SPLITCHAR % }{VALIDATING_STRING}", end="")
     exit({ % RESULT_EXIT_CODE % })
 
@@ -23,6 +30,8 @@ def CHEATING_ATTEMPT():
     exit({ % CHEAT_ATTEMPT_EXIT_CODE % })
 
 
+# A string that is used to validate that the student's code is not
+#         printing anything to stdout.
 VALIDATING_STRING = os.environ.pop("VALIDATING_STRING", None)
 if __name__ != "__main__" or VALIDATING_STRING is None:
     # If a student tries to import a testcase, the test will instantly fail.

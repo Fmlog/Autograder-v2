@@ -33,11 +33,11 @@ def main(paths: AutograderPaths):
     create_dir(paths.output_dir)
     create_dir(paths.extra_dir)
     config_path = paths.config
-    if not config_path.exists():
-        print(f"config.ini not found in {paths.tests_dir}. Creating a default config...")
-        paths.generate_config()
-    else:
-        print("Found config.ini")
+    # if not config_path.exists():
+    #     print(f"config.ini not found in {paths.tests_dir}. Creating a default config...")
+    #     paths.generate_config()
+    # else:
+    #     print("Found config.ini")
     stdout_formatters_path = paths.stdout_formatters
     if not stdout_formatters_path.exists():
         print(f"{stdout_formatters_path.name} not found. Creating a default file...")

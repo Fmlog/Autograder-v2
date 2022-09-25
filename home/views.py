@@ -9,8 +9,9 @@ from home.tokens import create_jwt_pair_for_user
 
 
 class RegisterLecturerViews(APIView):
-    ''' Create new teacher user '''
-
+    '''
+    Creates a new *lecturer* user
+    '''
     def post(self, request):
         serializer = UserSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -24,8 +25,9 @@ class RegisterLecturerViews(APIView):
 
 
 class RegisterStudentViews(APIView):
-    ''' Create new student user '''
-
+    '''
+    Creates a new *student* user
+    '''
     def post(self, request):
         serializer = UserSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -40,7 +42,7 @@ class RegisterStudentViews(APIView):
 
 
 class LoginViews(APIView):
-    ''' Authentication '''
+    ''' Handles login requests i.e. authentication '''
 
     def post(self, request):
         email = request.data.get('login_id')
@@ -66,7 +68,7 @@ class LoginViews(APIView):
 
 
 class UserViews(APIView):
-
+    ''' Handles user operations i.e. fetching user data and deleting users '''
     def get(self, request):
         user = request.user
         user = User.objects.filter(id=user.id).first()

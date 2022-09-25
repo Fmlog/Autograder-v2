@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('deleted_at', models.DateTimeField(blank=True, default=None, null=True)),
                 ('id', models.CharField(default=uuid.uuid4, editable=False, max_length=100, primary_key=True, serialize=False, unique=True)),
-                ('file', models.FileField(upload_to=grader.models.get_upload_to)),
+                ('file', models.FileField(upload_to=grader.models.get_testcase_upload_to)),
                 ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='grader.question')),
             ],
             options={
@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
             name='File',
             fields=[
                 ('id', models.CharField(default=uuid.uuid4, editable=False, max_length=100, primary_key=True, serialize=False, unique=True)),
-                ('file', models.FileField(upload_to=grader.models.get_file_upload_to)),
+                ('file', models.FileField(upload_to=grader.models.get_sub_upload_to)),
                 ('result', models.JSONField(default='{}')),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='grader.question')),

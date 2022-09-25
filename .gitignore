@@ -2,7 +2,5 @@ venv/
 media/
 
 db.sqlite3
-ass.json
-assignments.json
-courses.json
-submissions.json
+test.json
+

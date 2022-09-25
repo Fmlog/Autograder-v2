@@ -12,6 +12,11 @@ class UserSerializers(serializers.ModelSerializer):
         }
 
     def create (self, validated_data):
+        """
+        Validates new user data on Registration.
+        
+        :param validated_data: Auto-validated request (creation) data
+        """
         password = validated_data.pop('password', None)
         instance = self.Meta.model(**validated_data)
         if password is not None:
