@@ -12,6 +12,8 @@ import random
 import string
 import os
 import jwt
+import requests
+
 
 from grader.models import TestCase, Assignment, Submission, Course
 from home.models import User
@@ -19,6 +21,7 @@ from grader.serializers import (AssignmentSerializer, ConfigSerializer,
                                 CourseSerializer, SubmissionSerializer,
                                 TestCaseSerializer, Config)
 
+SUBLOGGER_URL = "http://127.0.0.1:7000/api/sublogger/"
 
 def slug_generator(size=6, chars=string.ascii_uppercase + string.digits):
     """
@@ -57,6 +60,28 @@ def validate_user(request):
 
     return True, user
 
+
+def postSubmissionResult(file_id, user_id, assignment_id, grade, result):
+    """
+    A function to post the submission results to the submission logger.
+    Called by the submission view.
+    
+    :param file_id: the id of the file that was submitted
+    :param user_id: the id of the user who submitted the file
+    :param assignment_id: The assignment id of the assignment you want to submit to
+    :param grade: the grade of the submission
+    :param result: a string that contains the result of the submission
+    """
+    url = SUBLOGGER_URL
+    headers = {"Authorization": "Bearer {}"}
+    payload = {
+        "id": file_id,
+        "assignment_id": assignment_id,
+        "user_id": user_id,
+        "comment": result,
+        "posted_grade": grade
+    }
+    return requests.post(url, json=payload, headers=headers)
 
 @api_view(['GET'])
 def getCourseAssignment(request, id):
