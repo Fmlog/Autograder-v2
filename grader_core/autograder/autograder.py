@@ -312,9 +312,16 @@ class Runner:
 
     # TODO: rename to "_run_testcases_on_submission" or something
     async def _get_testcase_output(self, submission: Submission, lock: asyncio.Lock) -> None:
-        """Grades single submission and returns its normalized score
+        """
+        Grades single submission and returns its normalized score.
+        Additional code implemented to save grading results as JSON
+        in the SQL database.
 
-        Note: Has side effects in submission instance
+        :note: Has side effects in submission instance
+        :param submission: Submitted files
+        :type submission: Submission
+        :param lock: asyncio.Lock
+        :type lock: asyncio.Lock
         """
         try:
             precompiled_submission = await submission.type.precompile_submission(
@@ -335,7 +342,7 @@ class Runner:
             submission.register_precompilation_error("No suitable testcases found.")
             return
         submission.type.run_additional_testcase_operations_in_student_dir(submission.temp_dir)
-        diction = []
+        results = []
         for test in allowed_tests:
             result = await test.run(
                 precompiled_submission,
@@ -351,9 +358,9 @@ class Runner:
                 message,
                 result.extra_output_fields,
             )
-            diction.append({
-                "grade": result.grade,
+            results.append({
                 "name": test.name,
+                "grade": result.grade,
                 "weight": test.weight,
                 "message": message,
                 "extra": result.extra_output_fields,
@@ -363,10 +370,10 @@ class Runner:
         grade = 0
         for grade in grades:
             if grade != 100:
-                grade = "0"
+                grade = 0
                 break
             else:
-                grade = "100"
+                grade = 100
 
         mydb = mysql.connector.connect(
             host="localhost",
@@ -374,9 +381,9 @@ class Runner:
             password="",
             database="autograder"
         )
-        result = json.dumps(diction)
+        resultsJson = json.dumps(results)
         mycursor = mydb.cursor()
         id = str(self.file_id)
-        mycursor.execute("""UPDATE grader_submission SET result = %s, grade= %s WHERE id = %s""", (result, grade, id))
+        mycursor.execute('''UPDATE grader_submission SET result = %s, grade= %s WHERE id = %s''', (resultsJson, grade, id))
         mydb.commit()
         submission.register_final_grade(self.grader.config.total_score_to_100_ratio)

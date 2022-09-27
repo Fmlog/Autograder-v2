@@ -104,7 +104,7 @@ class Submission(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     file = models.FileField(blank=False, null=False, upload_to=get_sub_upload_to)
     result = models.JSONField(blank=False, null=False, default='{}')
-    grade = models.CharField(max_length=20, default="0")
+    grade = models.IntegerField(default=0)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def filename(self):

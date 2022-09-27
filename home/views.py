@@ -8,38 +8,19 @@ from .models import User
 from home.tokens import create_jwt_pair_for_user
 
 
-class RegisterLecturerViews(APIView):
+class RegisterView(APIView):
     '''
-    Creates a new *lecturer* user
+    Creates a new *lecturer*, *student*, or admin user
     '''
     def post(self, request):
         serializer = UserSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.validated_data['role'] = User.TEACHER
         serializer.save()
         return Response({
             "status": "success",
             "data": serializer.data,
             "message": "user created"
         }, status=status.HTTP_200_OK)
-
-
-class RegisterStudentViews(APIView):
-    '''
-    Creates a new *student* user
-    '''
-    def post(self, request):
-        serializer = UserSerializers(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.validated_data['role'] = User.STUDENT
-        serializer.save()
-
-        return Response({
-            "status": "success",
-            "data": serializer.data,
-            "message": "user created"
-        }, status=status.HTTP_200_OK)
-
 
 class LoginViews(APIView):
     ''' Handles login requests i.e. authentication '''

@@ -205,7 +205,7 @@ class CourseView(APIView):
         
         :param request: The course as a form-data
         """
-        
+
         user = request.user
         if not user.is_authenticated:
             return Response(
@@ -331,7 +331,7 @@ class AssignmentView(APIView):
         # Fetching actual assignment object
         assignment = Assignment.objects.get(slug=slug)
 
-        #Run autograder on the server to create assignment directory structure
+        # Run autograder on the server to create assignment directory structure
         from grader_core.autograder.autograder import AutograderPaths
         from grader_core.autograder import guide
 
@@ -340,7 +340,7 @@ class AssignmentView(APIView):
         os.mkdir(f"{current_dir}/results")
         guide.main(AutograderPaths(current_dir))
 
-        #Add testcases and config filefrom request
+        #Add testcases and config file from request
         for f in request.FILES.getlist('testcase'):
             TestCase.objects.create(file=f, assignment=assignment)
         for f in request.FILES.getlist('config'):
