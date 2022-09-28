@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from home.models import User
-from .models import Assignment, Config, Course, Submission, TestCase
+from grader.models import Assignment, Config, Course, Submission, TestCase
 
 
 class CourseSerializer(serializers.ModelSerializer):

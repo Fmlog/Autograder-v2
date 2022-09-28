@@ -1,10 +1,10 @@
 from django.contrib.auth import authenticate
-from rest_framework.views import APIView
-from .serializers import UserSerializers
-from rest_framework.response import Response
 from rest_framework import status
-from .models import User
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
+from home.models import User
+from home.serializers import UserSerializers
 from home.tokens import create_jwt_pair_for_user
 
 
@@ -20,7 +20,7 @@ class RegisterView(APIView):
             "status": "success",
             "data": serializer.data,
             "message": "user created"
-        }, status=status.HTTP_200_OK)
+        }, status=status.HTTP_201_CREATED)
 
 class LoginViews(APIView):
     ''' Handles login requests i.e. authentication '''
@@ -34,7 +34,7 @@ class LoginViews(APIView):
             return Response({
                 "status": "error",
                 "message": "incorrect credentials"
-            }, status=status.HTTP_404_NOT_FOUND)
+            }, status=status.HTTP_401_UNAUTHORIZED)
 
         token = create_jwt_pair_for_user(user)
 
@@ -69,7 +69,7 @@ class UserViews(APIView):
         user = User.objects.filter(id=user.id).first()
         if not user:
             return Response({"status": "error", "data": [], "message": "User not found"},
-                            status=status.HTTP_404_NOT_FOUND)
+                            status=status.HTTP_401_UNAUTHORIZED)
 
         user.soft_delete()
         return Response({"status": "success", "data": [], "message": "user deleted"})

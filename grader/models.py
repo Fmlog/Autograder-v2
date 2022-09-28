@@ -9,9 +9,6 @@ def get_testcase_upload_to(instance, filename):
     """
     Gets the exact path to upload the testcases for a
     new testcase instance.
-    
-    :param instance: The model instance where the FileField is defined
-    :param filename: The name of the file that was uploaded
     """
     return 'upload/%s/%s' % (f"{instance.assignment.slug}/tests/testcases", filename)
 
@@ -19,9 +16,6 @@ def get_config_upload_to(instance, filename):
     """
     Gets the exact path to upload the config file for a
     new config instance.
-    
-    :param instance: This is the model instance
-    :param filename: The name of the file that was uploaded
     """
     return 'upload/%s/%s' % (f"{instance.assignment.slug}/tests", filename)
 
@@ -29,9 +23,6 @@ def get_sub_upload_to(instance, filename):
     """
     Gets the exact path to upload the submission file for a
     new submission instance.
-    
-    :param instance: The instance of the model where the FileField is defined
-    :param filename: The name of the file that was uploaded
     """
     return 'upload/%s/%s' % (f"{instance.assignment.slug}", filename)
 

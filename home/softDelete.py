@@ -1,6 +1,7 @@
+from django.contrib.auth.models import UserManager
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import UserManager
+
 
 # Overrides the default get_queryset() by filtering out "deleted" models
 class SoftDeleteManager(UserManager):

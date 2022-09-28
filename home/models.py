@@ -1,6 +1,8 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser, UserManager
-from .softDelete import SoftDeleteModel
+from django.db import models
+
+from home.softDelete import SoftDeleteModel
+
 
 class User(SoftDeleteModel, AbstractUser):
     '''Represent all types of users of the autograder
