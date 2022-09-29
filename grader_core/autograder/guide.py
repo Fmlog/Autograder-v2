@@ -21,7 +21,6 @@ def main(paths: AutograderPaths):
     if not paths.current_dir.exists() or not paths.current_dir.is_dir():
         print(f"Directory {paths.current_dir} not found. Please, use an existing directory.")
         exit(0)
-    print("Hello. I will now guide you through the initial setup of autograder.")
     # ans = input(f"Would you like to grade submissions located in '{paths.current_dir}'? (Yes/No) ")
     ans = "yes"
     if not ans.lower().startswith("y"):
@@ -64,17 +63,7 @@ def main(paths: AutograderPaths):
             else:
                 break
         safe_copytree(lang.get_template_dir(), paths.testcases_dir, dirs_exist_ok=True)
-    print(
-        "\n\nNow if you want to grade your submissions, you can use 'autograder run path/to/submissions/dir' "
-        "for this directory."
-    )
-    print(f"You can write your testcases in {paths.testcases_dir}")
-    print("If you want to see command line options, use 'autograder -h'")
-    print(f"You can put the stdin inputs to your testcases into {paths.input_dir}")
-    print(f"You can put the expected outputs to your testcases into {paths.output_dir}")
-    print(f"You can put the extra files to be available for each testcase into {paths.extra_dir}")
-    print(f"You can configure grading by editing {paths.config}")
-    print("You can find readme at https://github.com/Ovsyanka83/autograder")
+
 
 
 def _get_supported_languages(testcase_types_dir: Path) -> Dict[str, Type[TestCase]]:

@@ -1,5 +1,4 @@
 from django.db import models
-from home.softDelete import SoftDeleteModel
 from django.contrib.auth.models import AbstractUser
 import uuid
 from home.models import User
@@ -27,9 +26,8 @@ def get_sub_upload_to(instance, filename):
     return 'upload/%s/%s' % (f"{instance.assignment.slug}", filename)
 
 
-# Represents a course
-# The course model owns assignment model(s).
-class Course(SoftDeleteModel):
+
+class Course(models.Model):
     '''
     Represents a course
     The course model owns assignment model(s).
@@ -42,7 +40,7 @@ class Course(SoftDeleteModel):
         return self.name
 
 
-class Assignment(SoftDeleteModel):
+class Assignment(models.Model):
     '''
     Represents an assignment
     It is used to create the grading directory structure 
@@ -56,7 +54,7 @@ class Assignment(SoftDeleteModel):
     def __str__(self):
         return self.name
 
-class TestCase(SoftDeleteModel):
+class TestCase(models.Model):
     '''
     Represents a Testcase of an assignment.
     It is linked to uploaded testcase file in the grading directory. 
@@ -70,7 +68,7 @@ class TestCase(SoftDeleteModel):
         return os.path.basename(self.file.name)
 
 
-class Config(SoftDeleteModel):
+class Config(models.Model):
     '''
     Represents the configuration settings for the assignment.
     It is linked to uploaded testcase file in the grading directory. 
