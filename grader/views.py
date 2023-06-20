@@ -73,7 +73,6 @@ class CourseView(APIView):
         """
         Fetches all courses.        
         """
-        print(request.user)
         user = request.user
         if not user.is_authenticated:
             return Response(
